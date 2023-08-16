@@ -108,7 +108,7 @@ function throwDiceAndMove(){
                 console.log("computer play");
                 diceRoll = Math.floor(Math.random() * 6) + 1;
                 diceRollMvmt(comp1,diceRoll);
-                console.log("computer game completed");
+                console.log("computer dice role/play completed");
             }
             // chance=1;
         }else if (chance === 1){
@@ -148,11 +148,7 @@ class PlayerData {
             this.x_pos += diceRoll;
             console.log(this.x_pos,this.y_pos)
         }
-        if(this.x_pos == 9 && this.y_pos == 9){
-            console.log("Game over");
-            alert("Game over............................................")
-            console.log("player is won");  
-        }
+        
         //ladder
         console.log(this.x_pos,this.y_pos)
         if( (this.x_pos == 2)&&(this.y_pos==0))
@@ -282,10 +278,20 @@ class PlayerData {
 }
 
 // const diceRoll = Math.floor(Math.random() * 6) + 1
-function diceRollMvmt(player1, diceRoll){
+function diceRollMvmt(player, diceRoll){
 
-    player1.changePosition(diceRoll);
-    setTimeout(() => {  player1.move(player1.x_pos,player1.y_pos); }, 350);
+    player.changePosition(diceRoll);
+    setTimeout(() => {  
+        player.move(player.x_pos,player.y_pos); 
+        if(player.x_pos == 9 && player.y_pos == 9){
+            console.log("Game over");
+            // alert("Game over............................................" + player.playerId + " is winner")
+            console.log(player.playerId + " player is won");  
+            hideDiv("diceRollBlock");
+        }
+    
+    }, 350);
+    
     
 }
 // function randomIntFromInterval(min, max) { // min and max included 
