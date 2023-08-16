@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/flicker.css"> <!-- Include the external CSS file -->
+        <script src="js/flicker.js"></script> 
+    </head>
+    <body>
+        
+
+        <div class="container" id='myDiv'>
+            <center><img src="images/SNAKEANDLADDER.png" height="400px"style="vertical-align:middle" ></center>
+        </div>
+        <center><p id="flickeringText" onclick="nextpage()">press 'enter' to start</p></center>
+        <div class="row" id="form-players">
+            <form id="playersForm" >
+                <input type="checkbox" id="computer" name="pwc" value="0">
+                <label for="computer">play with computer</label><br>
+                <input type="checkbox" id="players2" name="pw2" value="1">
+                <label for="players2">2-players</label><br>
+                <input type="checkbox" id="players3" name="pw3" value="2">
+                <label for="players3">3-players</label>
+                <input type="checkbox" id="players4" name="pw4" value="3">
+                <label for="players4">4-players</label>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div class="row" id='div2'>
+            <div class="col-3">
+                <img id="player1-static" src="images/player1.png"  height="25px">
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <img id='board'  src="images/images2.png" style="width: 80%;" >
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        <img id="player-computer" src="images/computer.png"  class="player_class">
+                        <i>computer</i>
+                    </div>
+                    <div class="col-2">
+                        <img id="player1-dynamic" src="images/player1.png"  class="player_class">
+                        <i>player1</i>
+                    </div>
+                    <div class="col-2">
+                        <img id="player2-dynamic" src="images/player2.png"  class="player_class2">
+                        <i>player2</i>
+                    </div>
+                    <div class="col-2">
+                        <img id="player3-dynamic" src="images/player3.png"  class="player_class">
+                        <i>player3</i>
+                    </div>
+                    <div class="col-2">
+                        <img id="player4-dynamic" src="images/player4.png"  class="player_class">
+                        <i>player4</i>
+                    </div>
+                    <div class="col-2">
+                        </div>
+                </div>
+                
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <div class="col-12">
+                        <table>
+                            <tr>
+                                <th>PlayerName</th>
+                                <th>Score</th>
+                              </tr>
+                              <tr>
+                                <td>Computer</td>
+                                <td id="player-computer-score">0</td>
+                              </tr>
+                              <tr>
+                                <td>player1</td>
+                                <td id="player1-dynamic-score">0</td>
+                              </tr>
+                              <tr>
+                                <td>player2</td>
+                                <td id="player2-dynamic-score">0</td>
+                              </tr>
+                              <tr>
+                                <td>player3</td>
+                                <td id="player3-dynamic-score">0</td>
+                              </tr>
+                              <tr>
+                                <td>player4</td>
+                                <td id="player4-dynamic-score">0</td>
+                              </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <button onclick="myFunction()">roll dice</button>
+
+                    <div id="dicediv" style="display:none">
+                        <img src="images/rolingDice.gif" alt="dice roll" style="width:50%">
+                    </div>
+                   
+                    <div id="diceRollResultsDiv"><p>This dice roll got you an ::: <i id="diceRollResults"></i></p></div>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+        hideDiv('div2');
+        hideDiv('form-players');
+        // hideDiv('myDiv');
+        // hideDiv('flickeringText');
+
+        </script>
+        <script>
+            startFlicker();
+            ;
+            // const diceInt = Math.floor(Math.random() * 6) + 1
+            // diceRollMvmt(player1,0);
+
+            // player1.move(0,0)
+            //
+            var comp1 = null;
+            var player1=null;
+            var player2=null;
+            var player3=null;
+            var player4=null;
+            chance=0;
+            maxchance = 1;
+            document.getElementById("playersForm").addEventListener('submit', function () {
+                event.preventDefault();
+                hideDiv('form-players')
+                getPlayersCount()
+                return false;
+            });
+            document.addEventListener("keydown", function(event) {
+                console.log(event);
+                hideDivOnEnter(event,'myDiv');
+                hideDivOnEnter(event,'flickeringText');
+                // form-players
+                showDivOnEnter(event,'form-players');
+                
+            });
+            
+            
+        </script>
+         
+    </body>
+</html>
